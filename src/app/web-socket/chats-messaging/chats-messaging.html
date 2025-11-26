@@ -1,0 +1,127 @@
+<div class="flex flex-col h-screen bg-slate-900">
+  <header
+    class="px-5 sm:px-7 py-4 border-b border-slate-800/50 bg-gradient-to-r from-slate-800 to-slate-800 backdrop-blur-xl shadow-lg flex items-center justify-between flex-shrink-0"
+  >
+    <div class="flex items-center gap-4" *ngIf="navbarmessage">
+  <div class="relative w-14 h-14">
+    <img
+      [src]="navbarmessage.userImg"
+      class="w-full h-full rounded-2xl object-cover shadow-lg border-2 border-slate-500/50"
+    />
+    <!-- Remove the old floating dot here -->
+    <!-- <span class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-400 border-2 border-slate-800 rounded-full shadow-lg animate-pulse"></span> -->
+  </div>
+
+  <div class="space-y-1">
+    <p class="font-bold text-white text-xl sm:text-2xl tracking-tight">
+      {{ navbarmessage.userName }}
+    </p>
+
+    <!-- ✅ Online/Offline status directly under username -->
+    <p class="text-sm" [ngClass]="navbarmessage.isOnline ? 'text-emerald-400' : 'text-red-500'">
+      <span 
+        class="w-2 h-2 mr-1 rounded-full inline-block"
+        [ngClass]="navbarmessage.isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-red-500'"
+      ></span>
+      {{ navbarmessage.isOnline ? 'Online' : 'Offline' }}
+    </p>
+  </div>
+</div>
+
+    <div class="flex items-center gap-5 text-slate-300">
+      <button class="hover:text-white transition-colors duration-300 transform hover:scale-110">
+        <i class="fas fa-video text-lg"></i>
+      </button>
+      <button class="hover:text-white transition-colors duration-300 transform hover:scale-110">
+        <i class="fas fa-phone-alt text-lg"></i>
+      </button>
+      <button class="hover:text-white transition-colors duration-300 transform hover:scale-110">
+        <i class="fas fa-ellipsis-v text-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- CHAT MESSAGES -->
+  <div
+    class="flex-1 overflow-y-auto px-4 sm:px-6 md:px-8 py-8 bg-gradient-to-b from-slate-900/80 via-slate-800/60 to-slate-900/80 custom-scroll flex flex-col gap-6"
+  >
+    <!-- DATE DIVIDER -->
+    <div class="flex justify-center my-4">
+      <div class="bg-slate-700/50 text-slate-300 text-sm px-4 py-1 rounded-full backdrop-blur-sm">
+        Today
+      </div>
+    </div>
+
+    <!-- MY MESSAGE WITH IMAGE -->
+  <div
+  class="flex flex-col gap-2 group animate-fade-in"
+  *ngFor="let msg of messageresponse"
+  [ngClass]="msg.senderId === currentUserData?._id ? 'items-end' : 'items-start'"
+>
+  <div class="flex items-end gap-4"
+       [ngClass]="msg.senderId === currentUserData?._id ? 'justify-end' : 'justify-start'">
+       
+    <!-- USER IMAGE -->
+    <img
+      *ngIf="msg.senderId !== currentUserData?._id"
+      [src]="navbarmessage?.userImg"
+      class="w-10 h-10 rounded-2xl object-cover border-2 border-slate-600/50 shadow-lg"
+    />
+
+    <!-- MESSAGE BOX -->
+    <div class="relative max-w-[80%]">
+      <div
+        class="px-6 py-4 rounded-3xl shadow-message"
+        [ngClass]="msg.senderId === currentUserData?._id
+          ? 'bg-gradient-to-br from-cyan-500 via-teal-500 to-emerald-500 text-white rounded-tr-lg'
+          : 'bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700 text-white rounded-tl-lg'"
+      >
+        <p class="text-lg font-medium leading-relaxed">
+          {{ msg.message }}
+        </p>
+      </div>
+
+      <div class="text-xs text-slate-400/80 mt-2 font-medium tracking-wide"
+           [ngClass]="msg.senderId === currentUserData?._id ? 'text-right' : 'text-left'">
+        {{ msg.createdAt | date : 'shortTime' }}
+      </div>
+    </div>
+
+    <!-- MY PROFILE IMAGE -->
+    <img
+      *ngIf="msg.senderId === currentUserData?._id"
+      [src]="currentUserData?.userImg"
+      class="w-10 h-10 rounded-2xl object-cover border-2 border-slate-600/50 shadow-lg"
+    />
+  </div>
+
+  <!-- MESSAGE IMAGE (OPTIONAL) -->
+  <div
+    class="w-full max-w-[300px] mt-2 overflow-hidden rounded-2xl shadow-lg"
+    *ngIf="msg.userImg"
+    [ngClass]="msg.senderId === currentUserData?._id ? 'ml-auto' : 'mr-auto'"
+  >
+    <img class="w-full h-auto object-cover" [src]="msg.userImg" />
+  </div>
+</div>
+
+
+   
+
+    <!-- TYPING INDICATOR -->
+    <!-- <div class="flex items-start gap-4 animate-pulse">
+                <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    class="w-10 h-10 rounded-2xl object-cover border-2 border-slate-600/50 shadow-lg"
+                />
+                <div class="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700 text-white rounded-3xl rounded-tl-lg px-6 py-4 shadow-message">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div> -->
+  </div>
+  <app-send-messges></app-send-messges>
+</div>

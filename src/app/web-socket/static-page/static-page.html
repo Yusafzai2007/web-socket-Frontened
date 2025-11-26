@@ -1,0 +1,90 @@
+<main class="min-h-screen flex flex-col bg-slate-900">
+  <!-- Centered content -->
+  <section class="flex-1 flex items-center justify-center px-6">
+    <div class="max-w-xl w-full text-center">
+      <!-- Illustration -->
+      <div class="mx-auto mb-8 flex items-center justify-center">
+        <div class="relative">
+          <!-- Base plate -->
+          <div class="w-56 h-8 rounded-full bg-emerald-500/90 shadow-[0_14px_40px_rgba(0,0,0,0.55)]"></div>
+
+          <!-- Device card -->
+          <div class="absolute -top-28 left-1/2 -translate-x-1/2">
+            <div class="w-52 h-32 rounded-2xl bg-[#e7ffef] border border-emerald-500/40 shadow-[0_18px_40px_rgba(0,0,0,0.6)] flex overflow-hidden">
+              <!-- Sidebar -->
+              <div class="w-12 bg-emerald-500/90 flex flex-col justify-between items-center py-3">
+                <div class="w-2 h-2 rounded-full bg-emerald-200"></div>
+                <div class="w-6 h-6 rounded-full bg-emerald-200 flex items-center justify-center">
+                  <i data-lucide="phone-call" class="w-3.5 h-3.5 text-emerald-700"></i>
+                </div>
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-200/80"></div>
+              </div>
+
+              <!-- Main screen -->
+              <div class="flex-1 px-4 py-3 flex flex-col justify-between">
+                <div class="flex items-start justify-between">
+                  <div class="space-y-1">
+                    <div class="w-16 h-2 rounded-full bg-emerald-700/70"></div>
+                    <div class="w-10 h-1.5 rounded-full bg-emerald-400/60"></div>
+                  </div>
+                  <div class="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center">
+                    <i data-lucide="x" class="w-3 h-3 text-emerald-700"></i>
+                  </div>
+                </div>
+                <div class="flex items-center justify-between mt-2">
+                  <div class="w-20 h-10 rounded-xl border border-emerald-400/60 bg-emerald-50"></div>
+                  <div class="w-8 h-8 rounded-full bg-emerald-400 flex items-center justify-center">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-emerald-950"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating paper -->
+            <div class="absolute -right-4 -top-4">
+              <div class="w-10 h-12 rounded-lg bg-emerald-50 border border-emerald-400/60 flex flex-col justify-between px-2 py-1">
+                <div class="w-5 h-1 rounded-full bg-emerald-500/80"></div>
+                <div class="space-y-1">
+                  <div class="w-6 h-0.5 rounded-full bg-emerald-400/80"></div>
+                  <div class="w-4 h-0.5 rounded-full bg-emerald-300/80"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Arrow -->
+            <div class="absolute -left-6 -top-6">
+              <i data-lucide="arrow-right" class="w-6 h-6 text-emerald-400 rotate-12"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-3xl md:text-4xl font-semibold tracking-tight text-slate-50">
+        Welcome to Web-Socket-app
+      </h1>
+
+      <!-- Subtext -->
+      <p class="mt-4 text-sm md:text-base font-normal text-slate-300">
+        Connect instantly, share your moments, and enjoy seamless messaging on your PC.
+      </p>
+
+      <!-- Download button -->
+      <div class="mt-8 flex justify-center">
+        <button class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-2.5 text-sm md:text-base font-medium text-slate-900 shadow-[0_10px_30px_rgba(5,150,105,0.55)] transition hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#111b21]">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          Get Started Now
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer note -->
+  <footer class="py-5">
+    <div class="mx-auto flex items-center justify-center gap-2 text-xs text-slate-400 px-4">
+      <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+      <span>Your personal messages are end-to-end encrypted</span>
+    </div>
+  </footer>
+</main>

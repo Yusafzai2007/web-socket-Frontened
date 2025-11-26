@@ -1,0 +1,52 @@
+<div class="px-4 sm:px-6 md:px-8 py-6 border-t border-slate-700/30 bg-slate-800/20 backdrop-blur-xl shadow-2xl flex-shrink-0">
+  <form class="max-w-4xl mx-auto flex flex-col gap-2" (ngSubmit)="sendMessage()">
+
+    <!-- SHOW FILE NAME ABOVE INPUT -->
+    <div *ngIf="selectedImage" class="text-slate-200 bg-slate-700/50 px-3 py-2 rounded-xl flex items-center gap-3">
+      {{ selectedImage.name }}
+      <button type="button" (click)="removeImage()" class="text-red-400 hover:text-red-600">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- TEXTAREA WITH FILE ICON INSIDE -->
+    <div class="relative flex items-center gap-3">
+      <!-- PAPERCLIP ICON AS LABEL -->
+      <label class="absolute left-3 bottom-3 text-slate-400 hover:text-white cursor-pointer z-10">
+        <i class="fas fa-paperclip text-lg"></i>
+        <input type="file" hidden (change)="onImageSelect($event)">
+      </label>
+
+      <textarea rows="1" placeholder="Type your message..."
+        [(ngModel)]="sending.message" name="message"
+        class="w-full resize-none bg-slate-700/30 text-slate-100 placeholder:text-slate-400/70 rounded-2xl 
+               ring-2 ring-slate-600/30 px-12 py-4 pr-12 outline-none focus:ring-2 focus:ring-cyan-400/80
+               transition-all duration-500 text-lg font-medium shadow-xl backdrop-blur-sm">
+      </textarea>
+
+      <button class="absolute right-3 bottom-3 text-slate-400 hover:text-slate-200 transition-colors duration-300">
+        <i class="far fa-smile text-xl"></i>
+      </button>
+       <!-- SEND BUTTON OR LOADER -->
+    <div class="flex justify-end">
+      <!-- ✅ Loader -->
+      <button *ngIf="isSending" type="button"
+        class="shrink-0 w-14 h-14 rounded-2xl bg-cyan-500 flex items-center justify-center animate-spin">
+        <i class="fas fa-spinner text-white text-lg"></i>
+      </button>
+
+      <!-- ✅ Send Button -->
+      <button *ngIf="!isSending" type="submit"
+        class="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 
+               text-white font-bold hover:from-cyan-600 hover:via-teal-600 hover:to-emerald-600 
+               transition-all duration-500 flex items-center justify-center shadow-2xl hover:shadow-3xl 
+               transform hover:scale-105 animate-bounce-gentle">
+        <i class="fas fa-paper-plane text-lg"></i>
+      </button>
+    </div>
+    </div>
+
+   
+
+  </form>
+</div>
