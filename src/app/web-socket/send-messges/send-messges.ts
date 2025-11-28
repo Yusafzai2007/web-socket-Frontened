@@ -22,8 +22,6 @@ export class SendMessges implements OnInit {
 
   selectedImage: File | null = null;
   productId: string | null = null;
-
-  // ✅ loader state
   isSending: boolean = false;
 
   constructor(private active: ActivatedRoute, private message: Messages) {}
@@ -54,21 +52,16 @@ export class SendMessges implements OnInit {
     formData.append('message', this.sending.message);
     if (this.selectedImage) formData.append('userImg', this.selectedImage);
 
-    // ✅ Show loader
     this.isSending = true;
 
     this.message.sendMessages(this.productId, formData).subscribe({
       next: (res) => {
-        console.log("Sent:", res);
-
-        // reset message box
         this.sending.message = "";
         this.removeImage();
-        this.isSending = false; // hide loader
+        this.isSending = false;
       },
-      error: (err) => {
-        console.error("Send failed:", err);
-        this.isSending = false; // hide loader even on error
+      error: () => {
+        this.isSending = false;
       }
     });
   }

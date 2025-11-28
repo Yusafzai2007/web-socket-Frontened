@@ -16,8 +16,6 @@ import { io, Socket } from 'socket.io-client';
   styleUrl: './chats-messaging.css',
 })
 export class ChatsMessaging implements OnInit {
-  isSidebarOpen: boolean = true;
-
   messageresponse: ChatMessage[] = [];
   currentUserData: currentUser | null = null;
   navbarmessage: UserMessage | null = null;
@@ -45,7 +43,22 @@ export class ChatsMessaging implements OnInit {
           this.messageresponse = res.message;
         });
       }
+
+      // 🔥 Listen for messages from service
+      this.message.listenForMessages((msg) => {
+        this.handleIncomingMessage(msg);
+      });
     });
+  }
+
+  handleIncomingMessage(msg: ChatMessage) {
+    // add message directly to UI
+    this.messageresponse.push(msg);
+
+    setTimeout(() => {
+      const container = document.getElementById('chatContainer');
+      if (container) container.scrollTop = container.scrollHeight;
+    }, 100);
   }
 
   fetchCurrentUser(): Promise<void> {
@@ -67,6 +80,10 @@ export class ChatsMessaging implements OnInit {
       if (this.navbarmessage) {
         this.navbarmessage.isOnline = onlineUsers.includes(this.navbarmessage._id);
       }
+    });
+
+    this.socket.on('message', (msg: ChatMessage) => {
+      this.handleIncomingMessage(msg);
     });
 
     window.addEventListener('beforeunload', () => {
